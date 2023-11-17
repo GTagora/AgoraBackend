@@ -1,0 +1,9 @@
+# dotenv environment variables file
+.env
+.env.test
+
+# dependencies
+/node_modules
+
+# misc
+.DS_Store
