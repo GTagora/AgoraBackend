@@ -20,4 +20,19 @@ router.get('/', async(req, res) => {
     res.send(error);
   }
 });
+
+/* POST contacts. */
+router.post('/Contact Information', async(req, res) => {
+  try {
+    const id = req.body.email;
+    //May need more fields
+    const entry = {
+        email: req.body.email
+    };
+    const response = await db.collection("Contact Information").doc(id).set(entry);
+    res.send(response);
+  } catch (error) {
+    res.send(error)
+  }
+});
 module.exports = router;
