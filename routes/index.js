@@ -28,6 +28,7 @@ router.post('/postJournalEntries', async(req, res) => {
       Author: req.body.Author,
       Content_Type: req.body.ContentType,
       Date: req.body.Date,
+      Image: req.body.Image,
       Issue: req.body.Issue,
       Tags: req.body.Tags,
       Text: req.body.Text,
