@@ -41,6 +41,43 @@ router.post('/postJournalEntries', async(req, res) => {
   }
 });
 
+/* GET blog entries page. */
+router.get('/getBlogEntries', async(req, res) => {
+  try {
+    const issuesRef = db.collection("Blog");
+    const response = await issuesRef.get();
+    let responseArr = [];
+    response.forEach(doc => {
+      responseArr.push(doc.data());
+    });
+    res.send(responseArr);
+  } catch(error) {
+    res.send(error);
+  }
+});
+
+/*POST blog entries page. */
+router.post('/postBlogEntries', async(req, res) => {
+  try {
+    const id = "[" + req.body.Issue + "] " + req.body.Title;
+    const entry = {
+      Author: req.body.Author,
+      Content_Type: req.body.ContentType,
+      Date: req.body.Date,
+      Image: req.body.Image,
+      Issue: req.body.Issue,
+      Slug: req.body.Slug,
+      Tags: req.body.Tags,
+      Text: req.body.Text,
+      Title: req.body.Title
+    };
+    const response = await db.collection("Blog").doc(id).set(entry);
+    res.send(response);
+  } catch(error) {
+    res.send(error);
+  }
+});
+
 /* GET issues page. */
 router.get('/getIssues', async(req, res) => {
   try {
